@@ -191,7 +191,7 @@ void DrawFloorShadow(
       glPushMatrix();
       {
         float plane[4] = {0, 1, 0, -yfloor - 0.001f};
-        float lpos[4] = {0, 100, 0, 1};
+        float lpos[4] = {0, 500, 0, 1};
         float m_shadow[16];
         lcl::ShadowMatrix(m_shadow, plane, lpos);
         glMultMatrixf(m_shadow);

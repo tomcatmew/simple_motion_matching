@@ -85,7 +85,7 @@ void draw_red_sphere(
     // draw points
     float color[3] = { 0.9f,0.1f,0.1f };
     ::glColor3fv(color);
-    ::delfem2::opengl::DrawSphereAt(32, 32, 0.5, ip[0], 0, ip[1]);
+    ::delfem2::opengl::DrawSphereAt(32, 32, 4, ip[0], 0, ip[1]);
 }
 
 void draw_blue_sphere(
@@ -94,7 +94,7 @@ void draw_blue_sphere(
     // draw points
     float color[3] = { 0.1f,0.1f,0.9f };
     ::glColor3fv(color);
-    ::delfem2::opengl::DrawSphereAt(32, 32, 0.5, ip[0], 0, ip[1]);
+    ::delfem2::opengl::DrawSphereAt(32, 32, 4, ip[0], 0, ip[1]);
 }
 
 void draw_black_sphere(
@@ -103,7 +103,7 @@ void draw_black_sphere(
     // draw points
     float color[3] = { 0.1f,0.1f,0.1f };
     ::glColor3fv(color);
-    ::delfem2::opengl::DrawSphereAt(32, 32, 0.5, ip[0], 0, ip[1]);
+    ::delfem2::opengl::DrawSphereAt(32, 32, 4, ip[0], 0, ip[1]);
 }
 
 
