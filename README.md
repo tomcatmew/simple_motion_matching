@@ -1,6 +1,6 @@
 # Simple Motion Matching Implementation
 ## Screenshots
-![a](image/thumbnail.gif.gif)\
+![a](image/thumbnail.gif.)
 
 
 ## Build from Source
