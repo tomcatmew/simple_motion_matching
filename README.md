@@ -12,7 +12,7 @@ I improved this demo with the help of [Claude Code](https://claude.com/claude-co
 | <img src="image/thumbnail.gif" alt="original demo" width="420"/> | <img src="image/sample_preview.gif" alt="improved demo" width="420"/> |
 | The character follows a fixed square path. | The character is driven with a gamepad, and the path is edited in 3D with the mouse. |
 
-▶ **Full video of the new version (1:57):** [image/sample.mp4](image/sample.mp4)
+▶ **Full video of the new version (1:57):** [download sample.mp4](image/sample.mp4?raw=true) (27 MB, 1920×1050, 60 fps)
 
 | | Before | After |
 |---|---|---|
