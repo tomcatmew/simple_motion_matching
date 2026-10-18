@@ -3,7 +3,26 @@
 A small, self-contained motion matching demo written in C++ with legacy OpenGL, [GLFW](https://www.glfw.org/), [Dear ImGui](https://github.com/ocornut/imgui) and [delfem2](https://github.com/nobuyuki83/delfem2).
 Drive the character with a gamepad (or the keyboard), or draw a path with the mouse and let it walk / run along it.
 
-![a](image/thumbnail.gif)
+## Before and After
+
+I improved this demo with the help of [Claude Code](https://claude.com/claude-code). The left GIF is the original demo, and the right one is the current version.
+
+| Before: the original demo | After: improved with Claude Code |
+|:---:|:---:|
+| <img src="image/thumbnail.gif" alt="original demo" width="420"/> | <img src="image/sample_preview.gif" alt="improved demo" width="420"/> |
+| The character follows a fixed square path. | The character is driven with a gamepad, and the path is edited in 3D with the mouse. |
+
+▶ **Full video of the new version (1:57):** [image/sample.mp4](image/sample.mp4)
+
+| | Before | After |
+|---|---|---|
+| Driving the character | Follows a fixed path only. The gamepad only turned the camera. | A gamepad or the keyboard drives motion matching directly (walk, analog run, strafe), or the character follows a path. |
+| Setting up the path | 4 waypoints, edited by typing coordinates into number fields. | Click, drag, insert and delete waypoints in 3D, with any number of points. There are also presets, undo/redo, snap to grid and save/load. |
+| Camera | Orthographic view orbiting the world origin. | Third-person follow camera and a free camera, with a smooth switch between them. |
+| Transitions | Direct cut (optional lerp). | Inertialization. |
+| Getting it running | Needed a BVH file that isn't in the repo, plus LibTorch and a prebuilt GLFW. | Runs with the data in `data/`. Only the git submodules are needed. |
+
+### Screenshots
 
 | Controller mode (follow camera) | Path editor (free camera) |
 |:---:|:---:|
