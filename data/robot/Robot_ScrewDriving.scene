@@ -1,0 +1,34 @@
+# Robot_ScrewDriving: fasten the lid of a housing: drive four screws with an electric screwdriver
+tool screwdriver 18
+tcp TCP
+surface 75.0
+camera 14 90 40 0.62 0.42 120
+# workbench: top, frame and legs
+box 0 73.0 25 170 4 100 0.72 0.73 0.74
+box 0 68.0 25 164 6 94 0.30 0.32 0.36
+box -79 35.5 -19 6 71.0 6 0.30 0.32 0.36
+box -79 35.5 69 6 71.0 6 0.30 0.32 0.36
+box 79 35.5 -19 6 71.0 6 0.30 0.32 0.36
+box 79 35.5 69 6 71.0 6 0.30 0.32 0.36
+# housing with its lid
+box 18 79.0 52 30 8 22 0.45 0.52 0.62
+box 18 83.30 52 28 0.6 20 0.25 0.27 0.30
+cylinder 6.0 83.60 44.0 1.6 0.05 0.12 0.12 0.13
+cylinder 30.0 83.60 44.0 1.6 0.05 0.12 0.12 0.13
+cylinder 30.0 83.60 60.0 1.6 0.05 0.12 0.12 0.13
+cylinder 6.0 83.60 60.0 1.6 0.05 0.12 0.12 0.13
+# screws feeder
+box -40 78.0 40 14 6 10 0.42 0.44 0.48
+prop Screw1 screw 1.3 0.7 2.4 0.86 0.70 0.32
+prop Screw2 screw 1.3 0.7 2.4 0.86 0.70 0.32
+prop Screw3 screw 1.3 0.7 2.4 0.86 0.70 0.32
+prop Screw4 screw 1.3 0.7 2.4 0.86 0.70 0.32
+step 48 Move to screw 1
+step 149 Drive screw 1
+step 275 Move to screw 2
+step 368 Drive screw 2
+step 494 Move to screw 3
+step 587 Drive screw 3
+step 713 Move to screw 4
+step 802 Drive screw 4
+step 928 Return home

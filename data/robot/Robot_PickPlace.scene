@@ -1,0 +1,30 @@
+# Robot_PickPlace: assemble a stack of four parts: pick from the tray, turn, place on the fixture
+tool gripper 14
+tcp TCP
+surface 75.0
+camera 2 86 34 0.42 0.50 185
+# workbench: top, frame and legs
+box 0 73.0 25 170 4 100 0.72 0.73 0.74
+box 0 68.0 25 164 6 94 0.30 0.32 0.36
+box -79 35.5 -19 6 71.0 6 0.30 0.32 0.36
+box -79 35.5 69 6 71.0 6 0.30 0.32 0.36
+box 79 35.5 -19 6 71.0 6 0.30 0.32 0.36
+box 79 35.5 69 6 71.0 6 0.30 0.32 0.36
+# parts tray and assembly fixture
+box -45 75.75 38 26 1.5 34 0.22 0.27 0.36
+box 42.0 75.75 40.0 16 1.5 16 0.55 0.57 0.60
+cylinder 36.0 76.50 34.0 0.9 1.2 0.35 0.36 0.4
+cylinder 48.0 76.50 46.0 0.9 1.2 0.35 0.36 0.4
+prop Part1 box 8.0 2.5 8.0 0.85 0.22 0.20
+prop Part2 box 6.0 3.0 6.0 0.95 0.72 0.15
+prop Part3 box 4.6 3.0 4.6 0.25 0.65 0.35
+prop Part4 box 3.0 4.0 3.0 0.20 0.45 0.85
+step 48 Pick part 1
+step 279 Place part 1
+step 589 Pick part 2
+step 877 Place part 2
+step 1174 Pick part 3
+step 1457 Place part 3
+step 1749 Pick part 4
+step 2019 Place part 4
+step 2298 Return home

@@ -116,3 +116,35 @@ if (MSVC)
   set_target_properties(${PROJECT_NAME} PROPERTIES
       VS_DEBUGGER_WORKING_DIRECTORY "$<TARGET_FILE_DIR:${PROJECT_NAME}>")
 endif ()
+
+####################################################
+# motion viewer: plays the elderly / assisted walking and robot arm clips with buttons
+
+add_executable(Motion_viewer
+    viewer.cpp
+    camera.h
+    mannequin.h
+    motion_clip.h
+    motion_matching.h
+    render_util.h
+    robot_cell.h
+    selftest.h
+    )
+
+target_include_directories(Motion_viewer PRIVATE
+    ${OPENGL_INCLUDE_DIR}
+    ${GLFW_INCLUDE_DIR}
+    ${DELFEM2_INCLUDE_DIR}
+    ${IMGUIGLFW_INCLUDE_DIR}
+)
+
+target_link_libraries(Motion_viewer
+    ${OPENGL_LIBRARY}
+    ${GLFW_LIBRARIES}
+    ImGui
+    )
+
+if (MSVC)
+  set_target_properties(Motion_viewer PROPERTIES
+      VS_DEBUGGER_WORKING_DIRECTORY "$<TARGET_FILE_DIR:Motion_viewer>")
+endif ()
