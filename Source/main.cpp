@@ -836,32 +836,7 @@ class App {
   }
 
   static void DrawGround(float cx, float cz) {
-    const double tile = 100.0;
-    const int n = 45;
-    const double ox = std::floor(cx / (2 * tile)) * 2 * tile;
-    const double oz = std::floor(cz / (2 * tile)) * 2 * tile;
-    ::glDisable(GL_LIGHTING);
-    ::glEnable(GL_STENCIL_TEST);
-    ::glStencilFunc(GL_ALWAYS, 1, ~0u);
-    ::glStencilOp(GL_KEEP, GL_KEEP, GL_REPLACE);
-    ::glEnable(GL_POLYGON_OFFSET_FILL);
-    ::glPolygonOffset(1.f, 1.f);
-    ::glBegin(GL_QUADS);
-    ::glNormal3d(0, 1, 0);
-    for (int i = -n; i < n; ++i) {
-      for (int j = -n; j < n; ++j) {
-        if (((i + j) & 1) == 0) { ::glColor3f(0.62f, 0.62f, 0.56f); }
-        else { ::glColor3f(0.56f, 0.56f, 0.50f); }
-        const double x0 = ox + i * tile, z0 = oz + j * tile;
-        ::glVertex3d(x0, 0, z0);
-        ::glVertex3d(x0, 0, z0 + tile);
-        ::glVertex3d(x0 + tile, 0, z0 + tile);
-        ::glVertex3d(x0 + tile, 0, z0);
-      }
-    }
-    ::glEnd();
-    ::glDisable(GL_POLYGON_OFFSET_FILL);
-    ::glDisable(GL_STENCIL_TEST);
+    gl_util::CheckerGround(cx, cz);
     // world axes at the origin
     ::glLineWidth(2.f);
     ::glBegin(GL_LINES);
@@ -872,40 +847,7 @@ class App {
 
   // planar projected shadow from a directional light, masked to the floor with the stencil buffer
   static void DrawShadow(const std::vector<dfm2::CRigBone>& bones, float cx, float cz) {
-    const float plane[4] = {0.f, 1.f, 0.f, -0.3f};
-    const float light[4] = {0.35f, 1.0f, 0.45f, 0.f};
-    const float dot = plane[0] * light[0] + plane[1] * light[1] + plane[2] * light[2] + plane[3] * light[3];
-    float shadow[16];
-    for (int col = 0; col < 4; ++col) {
-      for (int row = 0; row < 4; ++row) {
-        shadow[col * 4 + row] = (row == col ? dot : 0.f) - light[row] * plane[col];
-      }
-    }
-    ::glEnable(GL_STENCIL_TEST);
-    ::glColorMask(GL_FALSE, GL_FALSE, GL_FALSE, GL_FALSE);
-    ::glDepthMask(GL_FALSE);
-    ::glStencilFunc(GL_EQUAL, 1, ~0u);
-    ::glStencilOp(GL_KEEP, GL_KEEP, GL_INCR);
-    ::glPushMatrix();
-    ::glMultMatrixf(shadow);
-    dfm2::opengl::DrawBone_Octahedron(bones, UINT_MAX, UINT_MAX, 0.1, 1.0);
-    ::glPopMatrix();
-    ::glColorMask(GL_TRUE, GL_TRUE, GL_TRUE, GL_TRUE);
-    ::glDepthMask(GL_TRUE);
-    ::glStencilFunc(GL_EQUAL, 2, ~0u);
-    ::glStencilOp(GL_KEEP, GL_KEEP, GL_KEEP);
-    ::glDisable(GL_DEPTH_TEST);
-    ::glDisable(GL_LIGHTING);
-    ::glColor4f(0.05f, 0.05f, 0.08f, 0.35f);
-    ::glBegin(GL_QUADS);
-    const double r = 4000.0;
-    ::glVertex3d(cx - r, 0.2, cz - r);
-    ::glVertex3d(cx - r, 0.2, cz + r);
-    ::glVertex3d(cx + r, 0.2, cz + r);
-    ::glVertex3d(cx + r, 0.2, cz - r);
-    ::glEnd();
-    ::glEnable(GL_DEPTH_TEST);
-    ::glDisable(GL_STENCIL_TEST);
+    gl_util::PlanarShadow(0.f, cx, cz, 0.35f, [&] { dfm2::opengl::DrawBone_Octahedron(bones, UINT_MAX, UINT_MAX, 0.1, 1.0); });
   }
 
   static void DrawCharacter(const std::vector<dfm2::CRigBone>& bones) {
